@@ -84,16 +84,16 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true}).then(()
 
 
 
-app.post('/changeAdminUname',(req,res)=>{
+app.post('/api/changeAdminUname',(req,res)=>{
   setEnvValue("ADMIN_USERNAME", req.body.data);
 })
 
-app.post('/changeAdminPwd',(req,res)=>{
+app.post('/api/changeAdminPwd',(req,res)=>{
   setEnvValue("ADMIN_PASSWORD", req.body.data);
 })
 
 
-app.post('/insert', function (req, res) {
+app.post('/api/insert', function (req, res) {
   console.log(currentUser);
   // console.log('reqdata',req.body.data.personal.personalDetails)
     console.log(req.body.data);
@@ -130,7 +130,7 @@ profileImage:imageUrl
 
 
 
-app.get('/resdata', (req,res)=>{
+app.get('/api/resdata', (req,res)=>{
 
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
@@ -152,7 +152,7 @@ app.get('/resdata', (req,res)=>{
 
 
 
-app.get('/editDetails', function(req,res){
+app.get('/api/editDetails', function(req,res){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
   resumecred
@@ -171,7 +171,7 @@ app.get('/editDetails', function(req,res){
 })
 
 
-app.get('/getTemp', function(req,res){
+app.get('/api/getTemp', function(req,res){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
   temp
@@ -191,7 +191,7 @@ app.get('/getTemp', function(req,res){
 
 
 
- app.post('/sendTempid', function (req, res) {
+ app.post('/api/sendTempid', function (req, res) {
   console.log(currentUser);
   // console.log('reqdata',req.body.data.personal.personalDetails)
 tempId=req.body.id;
@@ -220,7 +220,7 @@ temp.findOneAndUpdate({userid:currentUser},
  
 
  let imageUrl='';
- app.post('/imageUpload', function(req,res){
+ app.post('/api/imageUpload', function(req,res){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods:GET,POST,PUT,DELETE");
 
@@ -229,7 +229,7 @@ temp.findOneAndUpdate({userid:currentUser},
 
  })
 
-app.post('/signup',function(req,res){
+app.post('/api/signup',function(req,res){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods:GET,POST,PUT,DELETE");
     console.log(req.body.users);
@@ -255,7 +255,7 @@ app.post('/signup',function(req,res){
 
 
  
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
     console.log("data is",req.body);
@@ -280,7 +280,7 @@ app.post('/login', (req, res) => {
 
 
   let name='';
-  app.get('/username',(req,res)=>{
+  app.get('/api/username',(req,res)=>{
 
     console.log("backend connected for name",currentUser);
     signup
@@ -305,7 +305,7 @@ app.post('/login', (req, res) => {
 
 
 // admin login
-app.post('/login_admin', (req, res) => {
+app.post('/api/login_admin', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
   console.log("data is",req.body);
@@ -334,7 +334,7 @@ app.post('/login_admin', (req, res) => {
 
 
   // admin templates CRUD operations
-  app.get('/avlTemplates', function(req,res){
+  app.get('/api/avlTemplates', function(req,res){
   
     avltemp
     .findOne({ _id: "62ecc20595b39551c2f9c9b1" },(err,data)=>{
@@ -350,7 +350,7 @@ app.post('/login_admin', (req, res) => {
     })
   })
 
-  app.delete('/delete_avltemp/:id',(req,res)=>{
+  app.delete('/api/delete_avltemp/:id',(req,res)=>{
     console.log('del temp', req.params.id)
     // const index = avlTemp.indexOf(req.params.id);
     // avlTemp.splice(index,1);
@@ -369,7 +369,7 @@ app.post('/login_admin', (req, res) => {
   })
 
 
-  app.put('/add_avltemp',(req,res)=>{
+  app.put('/api/add_avltemp',(req,res)=>{
 
 
     avltemp.findByIdAndUpdate({_id:"62ecc20595b39551c2f9c9b1"}, {$addToSet:{avlTemp:req.body.data}},{safe: true, new:true},(err,temp) => {
