@@ -19,7 +19,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv");
 const app = new express();
 
-const port = process.env.PORT||4000;
+const port = 4000;
 const db='mongodb+srv://Resume_Builder:resume123@cluster0.uq5mq.mongodb.net/Resume_Builder?retryWrites=true&w=majority'
 ADMIN_USERNAME="admin";
 ADMIN_PASSWORD="admin123@";
